@@ -1,648 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Little Stories Everywhere — Vancouver Event Planning</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --black: #0A0A0A;
-    --white: #FFFFFF;
-    --off-white: #F8F8F8;
-    --gray: #888888;
-    --light-gray: #E8E8E8;
-    --border: #E0E0E0;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Jost', sans-serif; background: var(--white); color: var(--black); }
-
-  /* ANNOUNCEMENT BAR */
-  .announcement {
-    background: var(--black);
-    color: var(--white);
-    text-align: center;
-    padding: 10px;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-weight: 300;
-  }
-
-  /* NAV */
-  nav {
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    padding: 0 48px;
-  }
-
-  .nav-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px 0 16px;
-    position: relative;
-  }
-
-  .nav-logo {
-    text-align: center;
-    text-decoration: none;
-  }
-
-  .nav-logo-main {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    letter-spacing: 0.05em;
-    color: var(--black);
-    display: block;
-    line-height: 1;
-  }
-
-  .nav-logo-sub {
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gray);
-    font-weight: 300;
-    display: block;
-    margin-top: 2px;
-  }
-
-  .nav-links {
-    display: flex;
-    justify-content: center;
-    gap: 52px;
-    list-style: none;
-    padding: 0 0 20px;
-  }
-
-  .nav-links a {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--black);
-    text-decoration: none;
-    font-weight: 300;
-    transition: opacity 0.2s;
-    padding-bottom: 4px;
-  }
-
-  .nav-links a:hover { opacity: 0.5; }
-  .nav-links a.active { border-bottom: 1px solid var(--black); }
-
-  /* HERO */
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr 480px 1fr;
-    align-items: center;
-    min-height: 85vh;
-    padding: 0 48px;
-    gap: 0;
-  }
-
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-  }
-
-  .hero-word {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(64px, 8vw, 110px);
-    line-height: 0.9;
-    color: var(--black);
-    letter-spacing: 0.02em;
-  }
-
-  .hero-image {
-    width: 100%;
-    aspect-ratio: 3/4;
-    background: var(--off-white);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(100%);
-  }
-
-  .hero-image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 12px;
-    background: var(--off-white);
-    border: 1px dashed var(--border);
-  }
-
-  .hero-image-placeholder span {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    color: var(--light-gray);
-    letter-spacing: 0.1em;
-  }
-
-  .hero-image-placeholder small {
-    font-size: 11px;
-    color: var(--light-gray);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-weight: 300;
-  }
-
-  .hero-overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 6vw, 80px);
-    color: var(--white);
-    letter-spacing: 0.05em;
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  .hero-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0;
-  }
-
-  .hero-sub {
-    font-size: 12px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gray);
-    font-weight: 300;
-    margin-top: 20px;
-    line-height: 1.8;
-    text-align: center;
-  }
-
-  .hero-cta {
-    display: inline-block;
-    margin-top: 32px;
-    padding: 14px 40px;
-    background: var(--black);
-    color: var(--white);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 300;
-    transition: all 0.3s;
-    border: 1px solid var(--black);
-  }
-
-  .hero-cta:hover { background: var(--white); color: var(--black); }
-
-  /* MARQUEE */
-  .marquee {
-    overflow: hidden;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 0;
-    background: var(--off-white);
-  }
-
-  .marquee-track {
-    display: flex;
-    animation: marquee 25s linear infinite;
-    white-space: nowrap;
-  }
-
-  .marquee-item {
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--black);
-    padding: 0 40px;
-    font-weight: 300;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-
-  .marquee-sep { width: 3px; height: 3px; background: var(--black); border-radius: 50%; display: inline-block; }
-
-  /* SERVICES */
-  .services {
-    padding: 100px 48px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gray);
-    font-weight: 300;
-    margin-bottom: 48px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border: 1px solid var(--border);
-  }
-
-  .service-card {
-    padding: 48px 36px;
-    border-right: 1px solid var(--border);
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: background 0.3s;
-  }
-
-  .service-card:last-child { border-right: none; }
-  .service-card:hover { background: var(--off-white); }
-
-  .service-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    color: var(--light-gray);
-    line-height: 1;
-    margin-bottom: 20px;
-  }
-
-  .service-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 0.05em;
-    color: var(--black);
-    margin-bottom: 12px;
-  }
-
-  .service-desc {
-    font-size: 13px;
-    color: var(--gray);
-    line-height: 1.8;
-    font-weight: 300;
-    margin-bottom: 28px;
-  }
-
-  .service-link {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--black);
-    font-weight: 300;
-    border-bottom: 1px solid var(--black);
-    padding-bottom: 2px;
-  }
-
-  /* STORY STRIP */
-  .story-strip {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .story-image {
-    aspect-ratio: 4/5;
-    background: var(--off-white);
-    overflow: hidden;
-  }
-
-  .story-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(100%);
-  }
-
-  .story-image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--off-white);
-    border: 1px dashed var(--border);
-  }
-
-  .story-image-placeholder span {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 14px;
-    color: var(--light-gray);
-    letter-spacing: 0.15em;
-  }
-
-  .story-content {
-    padding: 80px 64px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: var(--off-white);
-  }
-
-  .story-content h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 5vw, 72px);
-    letter-spacing: 0.03em;
-    color: var(--black);
-    line-height: 1;
-    margin-bottom: 28px;
-  }
-
-  .story-content p {
-    font-size: 14px;
-    color: var(--gray);
-    line-height: 2;
-    font-weight: 300;
-    margin-bottom: 40px;
-  }
-
-  .btn-black {
-    display: inline-block;
-    padding: 14px 40px;
-    background: var(--black);
-    color: var(--white);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 300;
-    transition: all 0.3s;
-    border: 1px solid var(--black);
-    align-self: flex-start;
-  }
-
-  .btn-black:hover { background: var(--white); color: var(--black); }
-
-  /* HANDMADE STRIP */
-  .handmade {
-    padding: 100px 48px;
-    text-align: center;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .handmade h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(52px, 8vw, 120px);
-    letter-spacing: 0.02em;
-    color: var(--black);
-    line-height: 0.9;
-    margin-bottom: 24px;
-  }
-
-  .handmade p {
-    font-size: 14px;
-    color: var(--gray);
-    line-height: 1.8;
-    font-weight: 300;
-    max-width: 500px;
-    margin: 0 auto 40px;
-  }
-
-  /* FOOTER */
-  footer {
-    background: var(--black);
-    padding: 60px 48px 40px;
-  }
-
-  .footer-top {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 48px;
-    margin-bottom: 48px;
-    padding-bottom: 48px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .footer-logo-text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--white);
-    letter-spacing: 0.05em;
-    margin-bottom: 12px;
-  }
-
-  .footer-tagline {
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 0.1em;
-    font-weight: 300;
-  }
-
-  .footer-col h4 {
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    font-weight: 300;
-    margin-bottom: 16px;
-  }
-
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
-  .footer-col ul a {
-    font-size: 13px;
-    color: rgba(255,255,255,0.6);
-    text-decoration: none;
-    font-weight: 300;
-    transition: color 0.2s;
-  }
-
-  .footer-col ul a:hover { color: var(--white); }
-
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-copy {
-    font-size: 11px;
-    color: rgba(255,255,255,0.3);
-    font-weight: 300;
-    letter-spacing: 0.08em;
-  }
-
-  /* ANIMATIONS */
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* MOBILE */
-  @media (max-width: 768px) {
-    nav { padding: 0 24px; }
-    .nav-links { gap: 24px; flex-wrap: wrap; }
-    .hero { grid-template-columns: 1fr; padding: 40px 24px; min-height: auto; gap: 32px; }
-    .hero-left, .hero-right { align-items: center; }
-    .hero-word { font-size: 64px; }
-    .services { padding: 60px 24px; }
-    .services-grid { grid-template-columns: 1fr; }
-    .service-card { border-right: none; border-bottom: 1px solid var(--border); }
-    .story-strip { grid-template-columns: 1fr; }
-    .story-content { padding: 48px 24px; }
-    .handmade { padding: 60px 24px; }
-    footer { padding: 48px 24px 32px; }
-    .footer-top { grid-template-columns: 1fr; gap: 32px; }
-    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Little Stories Everywhere — Vancouver Event Design</title>
+  <meta name="description" content="Little Stories Everywhere — Event design and styling based in Vancouver, BC. Weddings, proposals, baby showers, birthdays, and custom handmade decor." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="announcement">Summer 2026 bookings now open — Vancouver event planning & styling</div>
-
-<nav>
-  <div class="nav-top">
-    <a href="index.html" class="nav-logo">
-      <span class="nav-logo-main">Little Stories Everywhere</span>
-      <span class="nav-logo-sub">Vancouver</span>
-    </a>
-  </div>
-  <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="about.html">Our Story</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="contact.html">Contact Us</a></li>
-  </ul>
-</nav>
-
-<section class="hero">
-  <div class="hero-left">
-    <div class="hero-word">EVERY</div>
-    <div class="hero-word">EVENT</div>
-  </div>
-
-  <div class="hero-image">
-    <div class="hero-image-placeholder">
-      <span>YOUR PHOTO HERE</span>
-      <small>Replace with arch or event image</small>
+  <!-- NAV -->
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <div class="wordmark">
+        <a href="#home">
+          <span class="wordmark-main">Little Stories Everywhere</span>
+          <span class="wordmark-sub">Vancouver, BC</span>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#story" class="nav-link">Our Story</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <div class="hero-overlay-text">TELLS</div>
-  </div>
-
-  <div class="hero-right">
-    <div class="hero-word">A</div>
-    <div class="hero-word">STORY</div>
-    <p class="hero-sub">Weddings · Showers<br>Birthdays · Vancouver</p>
-    <a href="contact.html" class="hero-cta">Book a consultation</a>
-  </div>
-</section>
-
-<div class="marquee">
-  <div class="marquee-track">
-    <div class="marquee-item">Weddings <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Baby Showers <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Bridal Showers <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Birthday Celebrations <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Handcrafted Backdrops <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Custom Props <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Vancouver BC <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Weddings <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Baby Showers <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Bridal Showers <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Birthday Celebrations <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Handcrafted Backdrops <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Custom Props <span class="marquee-sep"></span></div>
-    <div class="marquee-item">Vancouver BC <span class="marquee-sep"></span></div>
-  </div>
-</div>
-
-<section class="services">
-  <div class="section-label">What we do</div>
-  <div class="services-grid">
-    <a href="services.html" class="service-card">
-      <div class="service-num">01</div>
-      <div class="service-name">Weddings</div>
-      <p class="service-desc">Day-of coordination and partial planning — every detail handled so you can be present in your own moment.</p>
-      <span class="service-link">Learn more</span>
-    </a>
-    <a href="services.html" class="service-card">
-      <div class="service-num">02</div>
-      <div class="service-name">Showers</div>
-      <p class="service-desc">Baby and bridal showers filled with handcrafted props, florals, and a story that's entirely yours.</p>
-      <span class="service-link">Learn more</span>
-    </a>
-    <a href="services.html" class="service-card">
-      <div class="service-num">03</div>
-      <div class="service-name">Birthdays</div>
-      <p class="service-desc">Milestone celebrations that feel as significant as they are — whimsical, maximalist, unforgettable.</p>
-      <span class="service-link">Learn more</span>
-    </a>
-  </div>
-</section>
-
-<section class="story-strip">
-  <div class="story-image">
-    <div class="story-image-placeholder">
-      <span>YOUR PHOTO HERE</span>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#home" class="mobile-link">Home</a>
+      <a href="#story" class="mobile-link">Our Story</a>
+      <a href="#contact" class="mobile-link">Contact</a>
     </div>
-  </div>
-  <div class="story-content">
-    <h2>CRAFTED WITH INTENTION</h2>
-    <p>Every prop is made by hand. Every detail is chosen with purpose. Little Stories Everywhere brings a whimsical, maximalist world to your event — one that makes people stop the moment they walk in.</p>
-    <p>Based in Vancouver, we specialise in creating atmospheres, not just events. Giant bow arches, paper flower walls, rattan candelabras — each piece handmade, each event one of a kind.</p>
-    <a href="about.html" class="btn-black">Our story</a>
-  </div>
-</section>
+  </header>
 
-<section class="handmade">
-  <h2>HANDMADE.<br>EVERY TIME.</h2>
-  <p>Nothing mass produced. Nothing generic. Everything you see at a Little Stories event was made by hand, from scratch, for you.</p>
-  <a href="gallery.html" class="btn-black">See our work</a>
-</section>
+  <!-- HOME SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-layout">
+      <div class="hero-left">
+        <h1 class="hero-headline">
+          <span class="line-1">EVERY</span>
+          <span class="line-2">EVENT</span>
+        </h1>
+      </div>
+      <div class="hero-center">
+        <div class="hero-image-wrap">
+          <!-- Replace src with your photo -->
+          <div class="hero-photo-placeholder">
+            <span>Your photo here</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <h2 class="hero-headline-right">
+          <span class="line-a">A</span>
+          <span class="line-b">STORY</span>
+        </h2>
+        <p class="hero-tags">Weddings &middot; Proposals<br>Showers &middot; Birthdays</p>
+        <a href="#contact" class="btn-primary">Book a Consultation</a>
+      </div>
+    </div>
+  </section>
 
-<footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-logo-text">Little Stories Everywhere</div>
-      <div class="footer-tagline">Vancouver Event Planning & Styling</div>
-    </div>
-    <div class="footer-col">
-      <h4>Navigate</h4>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">Our Story</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Get in touch</h4>
-      <ul>
-        <li><a href="https://www.instagram.com/littlestorieseverywhere" target="_blank">Instagram</a></li>
-        <li><a href="mailto:hello@littlestorieseverywhere.com">Email us</a></li>
-        <li><a href="contact.html">Book a consultation</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Little Stories Everywhere. Vancouver, BC.</div>
-    <div class="footer-copy">Every event tells a story.</div>
-  </div>
-</footer>
+  <!-- INTRO STRIP -->
+  <section class="intro-strip">
+    <p class="intro-text">Custom handmade decor &amp; backdrops. Designed to feel like you — elevated, effortless, unforgettable.</p>
+  </section>
 
+  <!-- OUR STORY SECTION -->
+  <section class="story-section" id="story">
+    <div class="story-inner">
+      <div class="story-label">Our Story</div>
+      <div class="story-grid">
+        <div class="story-headline-col">
+          <h2 class="story-headline">
+            Details<br><em>matter.</em>
+          </h2>
+        </div>
+        <div class="story-text-col">
+          <p>Hi, I'm Massi — event designer and creator behind Little Stories Everywhere. I've spent years designing moments for the people I love: weddings, proposals, baby showers, birthday celebrations. Every single one photographed beautifully, felt personal, and left people wanting to stay just a little longer.</p>
+          <p>What makes me different isn't just the planning. It's the custom handmade backdrops and decor I create from scratch for every event — pieces you won't find anywhere else, built specifically for you. Nobody else at this level is doing that.</p>
+          <p>Based in Greater Vancouver and available throughout the Sea-to-Sky Corridor and Fraser Valley. If you're ready to build something beautiful together, let's talk.</p>
+          <a href="#contact" class="btn-secondary">Let's Work Together</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM SECTION -->
+  <section class="instagram-section" id="instagram">
+    <div class="ig-inner">
+      <div class="ig-header">
+        <span class="ig-label">Follow Along</span>
+        <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener" class="ig-handle">@little.stories.everywhere</a>
+      </div>
+
+      <!-- 
+        INSTAGRAM EMBED GOES HERE
+        When ready, replace the placeholder grid below with your embed code.
+        Recommended tools: Elfsight, Beacons, or Snap Widget
+        Paste their embed <script> tag here and remove the placeholder grid.
+      -->
+      <div class="ig-placeholder-grid">
+        <div class="ig-tile"></div>
+        <div class="ig-tile"></div>
+        <div class="ig-tile"></div>
+        <div class="ig-tile"></div>
+        <div class="ig-tile"></div>
+        <div class="ig-tile"></div>
+      </div>
+
+      <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener" class="btn-outline">View on Instagram</a>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="contact-label">Contact</div>
+        <h2 class="contact-headline">Let's build<br><em>your story.</em></h2>
+        <p class="contact-sub">Based in Vancouver, BC<br>Available across the Sea-to-Sky Corridor &amp; Fraser Valley</p>
+        <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener" class="contact-ig">@little.stories.everywhere</a>
+      </div>
+      <div class="contact-right">
+        <form class="contact-form" id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="event-type">Event Type</label>
+            <select id="event-type" name="event-type">
+              <option value="" disabled selected>Select an event type</option>
+              <option>Wedding</option>
+              <option>Proposal / Engagement</option>
+              <option>Baby Shower</option>
+              <option>Birthday</option>
+              <option>Other Celebration</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell me about your event</label>
+            <textarea id="message" name="message" placeholder="Date, vision, details — anything you'd like me to know" rows="5"></textarea>
+          </div>
+          <button type="submit" class="btn-primary full-width">Send Message</button>
+          <p class="form-note">I typically respond within 48 hours.</p>
+        </form>
+        <div class="form-success" id="form-success">
+          <p>Thank you — I'll be in touch soon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-wordmark">Little Stories Everywhere</div>
+      <div class="footer-mid">
+        <a href="#home">Home</a>
+        <a href="#story">Our Story</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-right">
+        <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener">Instagram</a>
+        <span class="footer-copy">&copy; 2025 Little Stories Everywhere. Based in Vancouver, BC.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
