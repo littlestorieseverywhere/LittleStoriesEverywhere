@@ -5,117 +5,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Little Stories Everywhere</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
-  :root { --cream: #FAF7F2; --warm-white: #FDF9F4; --deep-rose: #8B3A52; --blush: #D4A0A0; --charcoal: #2C2C2C; --mid: #6B6060; --border: rgba(139,58,82,0.15); }
+  :root { --black: #0A0A0A; --white: #FFFFFF; --off-white: #F8F8F8; --gray: #888888; --light-gray: #E8E8E8; --border: #E0E0E0; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); cursor: none; }
-  .cursor { width: 8px; height: 8px; background: var(--deep-rose); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.15s ease; transform: translate(-50%, -50%); }
-  .cursor-ring { width: 32px; height: 32px; border: 1px solid var(--deep-rose); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transition: all 0.3s ease; transform: translate(-50%, -50%); opacity: 0.5; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: rgba(250,247,242,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.08em; color: var(--charcoal); text-decoration: none; font-style: italic; }
-  .nav-links { display: flex; gap: 40px; list-style: none; }
-  .nav-links a { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.3s; font-weight: 300; }
-  .nav-links a:hover, .nav-links a.active { color: var(--deep-rose); }
+  body { font-family: 'Jost', sans-serif; background: var(--white); color: var(--black); }
+  .announcement { background: var(--black); color: var(--white); text-align: center; padding: 10px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 300; }
+  nav { background: var(--white); border-bottom: 1px solid var(--border); padding: 0 48px; }
+  .nav-top { display: flex; justify-content: center; padding: 24px 0 16px; }
+  .nav-logo { text-align: center; text-decoration: none; }
+  .nav-logo-main { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 0.05em; color: var(--black); display: block; line-height: 1; }
+  .nav-logo-sub { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gray); font-weight: 300; display: block; margin-top: 2px; }
+  .nav-links { display: flex; justify-content: center; gap: 52px; list-style: none; padding: 0 0 20px; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); text-decoration: none; font-weight: 300; padding-bottom: 4px; }
+  .nav-links a:hover { opacity: 0.5; }
+  .nav-links a.active { border-bottom: 1px solid var(--black); }
 
   .contact-layout {
-    min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-top: 88px;
+    min-height: calc(100vh - 130px);
   }
 
   .contact-left {
-    background: var(--charcoal);
+    background: var(--black);
     padding: 80px 64px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
   }
 
   .contact-left h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(40px, 4vw, 60px);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--cream);
-    line-height: 1.2;
-    margin-bottom: 28px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 7vw, 100px);
+    letter-spacing: 0.02em;
+    line-height: 0.9;
+    color: var(--white);
+    margin-bottom: 32px;
   }
-
-  .contact-left h1 em { color: var(--blush); font-style: normal; }
 
   .contact-left p {
     font-size: 14px;
-    color: rgba(250,247,242,0.55);
+    color: rgba(255,255,255,0.5);
     line-height: 2;
     font-weight: 300;
-    margin-bottom: 52px;
-    max-width: 400px;
+    max-width: 380px;
   }
 
-  .contact-info { display: flex; flex-direction: column; gap: 28px; }
+  .contact-details { margin-top: 64px; display: flex; flex-direction: column; gap: 32px; }
 
-  .contact-item {
-    border-top: 1px solid rgba(250,247,242,0.1);
-    padding-top: 24px;
-  }
+  .contact-detail { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; }
 
-  .contact-item-label {
+  .contact-detail-label {
     font-size: 10px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: rgba(250,247,242,0.3);
+    color: rgba(255,255,255,0.3);
     font-weight: 300;
     margin-bottom: 8px;
   }
 
-  .contact-item-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 300;
-    color: var(--cream);
-    font-style: italic;
+  .contact-detail-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    color: var(--white);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: opacity 0.2s;
+    display: block;
   }
 
-  .contact-item-value:hover { color: var(--blush); }
+  .contact-detail-value:hover { opacity: 0.6; }
 
+  .booking-note {
+    margin-top: 48px;
+    padding: 20px 24px;
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+  }
+
+  /* FORM */
   .contact-right {
-    background: var(--warm-white);
     padding: 80px 64px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    background: var(--off-white);
   }
 
   .contact-right h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--charcoal);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0.05em;
+    color: var(--black);
     margin-bottom: 8px;
   }
 
   .contact-right .sub {
     font-size: 13px;
-    color: var(--mid);
+    color: var(--gray);
     font-weight: 300;
     margin-bottom: 40px;
     line-height: 1.6;
   }
 
-  .form-group { margin-bottom: 24px; }
+  .form-group { margin-bottom: 20px; }
 
   .form-group label {
     display: block;
     font-size: 10px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--mid);
-    font-weight: 300;
+    color: var(--black);
+    font-weight: 400;
     margin-bottom: 8px;
   }
 
@@ -124,12 +127,12 @@
   .form-group textarea {
     width: 100%;
     padding: 14px 16px;
-    background: var(--cream);
+    background: var(--white);
     border: 1px solid var(--border);
     font-family: 'Jost', sans-serif;
     font-size: 13px;
     font-weight: 300;
-    color: var(--charcoal);
+    color: var(--black);
     outline: none;
     transition: border-color 0.3s;
     appearance: none;
@@ -137,23 +140,21 @@
 
   .form-group input:focus,
   .form-group select:focus,
-  .form-group textarea:focus {
-    border-color: var(--deep-rose);
-  }
+  .form-group textarea:focus { border-color: var(--black); }
 
-  .form-group textarea { height: 120px; resize: none; }
+  .form-group textarea { height: 100px; resize: none; }
 
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
   .form-submit {
     width: 100%;
-    padding: 18px;
-    background: var(--deep-rose);
-    color: white;
-    border: 1px solid var(--deep-rose);
+    padding: 16px;
+    background: var(--black);
+    color: var(--white);
+    border: 1px solid var(--black);
     font-family: 'Jost', sans-serif;
     font-size: 11px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     font-weight: 300;
     cursor: pointer;
@@ -161,73 +162,77 @@
     margin-top: 8px;
   }
 
-  .form-submit:hover { background: transparent; color: var(--deep-rose); }
+  .form-submit:hover { background: var(--white); color: var(--black); }
 
-  .form-note {
-    font-size: 11px;
-    color: var(--mid);
-    font-weight: 300;
-    margin-top: 16px;
-    line-height: 1.6;
-    text-align: center;
-  }
+  .form-note { font-size: 11px; color: var(--gray); font-weight: 300; margin-top: 16px; text-align: center; line-height: 1.6; }
 
-  footer { padding: 40px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 300; font-style: italic; color: var(--charcoal); }
-  .footer-copy { font-size: 11px; color: var(--mid); letter-spacing: 0.1em; font-weight: 300; }
-  .footer-location { font-size: 11px; color: var(--mid); letter-spacing: 0.1em; font-weight: 300; }
+  footer { background: var(--black); padding: 60px 48px 40px; }
+  .footer-top { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .footer-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--white); letter-spacing: 0.05em; margin-bottom: 12px; }
+  .footer-tagline { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; font-weight: 300; }
+  .footer-col h4 { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 300; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; font-weight: 300; }
+  .footer-bottom { display: flex; justify-content: space-between; }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.3); font-weight: 300; letter-spacing: 0.08em; }
 
   @media (max-width: 768px) {
-    nav { padding: 20px 24px; } .nav-links { gap: 20px; }
+    nav { padding: 0 24px; } .nav-links { gap: 24px; flex-wrap: wrap; }
     .contact-layout { grid-template-columns: 1fr; }
     .contact-left { padding: 60px 24px; }
     .contact-right { padding: 60px 24px; }
     .form-row { grid-template-columns: 1fr; }
-    footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+    footer { padding: 48px 24px 32px; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 12px; }
   }
 </style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
+<div class="announcement">Summer 2026 bookings now open — Vancouver event planning & styling</div>
 <nav>
-  <a href="index.html" class="nav-logo">Little Stories Everywhere</a>
+  <div class="nav-top">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">Little Stories Everywhere</span>
+      <span class="nav-logo-sub">Vancouver</span>
+    </a>
+  </div>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
+    <li><a href="about.html">Our Story</a></li>
     <li><a href="services.html">Services</a></li>
     <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="contact.html" class="active">Contact</a></li>
+    <li><a href="contact.html" class="active">Contact Us</a></li>
   </ul>
 </nav>
 
 <div class="contact-layout">
   <div class="contact-left">
-    <h1>Let's tell your <em>story</em></h1>
-    <p>Every event begins with a conversation. Tell us about your vision — the date, the feeling, the people — and we'll figure out the rest together.</p>
-    <div class="contact-info">
-      <div class="contact-item">
-        <div class="contact-item-label">Instagram</div>
-        <a href="https://www.instagram.com/littlestorieseverywhere" target="_blank" class="contact-item-value">@littlestorieseverywhere</a>
+    <div>
+      <h1>GET IN TOUCH</h1>
+      <p>Every event begins with a conversation. Tell us about your vision and we'll figure out the rest together.</p>
+      <div class="contact-details">
+        <div class="contact-detail">
+          <div class="contact-detail-label">Instagram</div>
+          <a href="https://www.instagram.com/littlestorieseverywhere" target="_blank" class="contact-detail-value">@LITTLESTORIESEVERYWHERE</a>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-label">Email</div>
+          <a href="mailto:hello@littlestorieseverywhere.com" class="contact-detail-value">HELLO@LITTLESTORIES.COM</a>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-label">Based in</div>
+          <div class="contact-detail-value">VANCOUVER, BC</div>
+        </div>
       </div>
-      <div class="contact-item">
-        <div class="contact-item-label">Email</div>
-        <a href="mailto:hello@littlestorieseverywhere.com" class="contact-item-value">hello@littlestorieseverywhere.com</a>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-label">Based in</div>
-        <div class="contact-item-value" style="cursor:default;">Vancouver, BC</div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-label">Currently booking</div>
-        <div class="contact-item-value" style="cursor:default; color:var(--blush);">Summer & Fall 2026</div>
-      </div>
+    </div>
+    <div class="booking-note">
+      Currently booking Summer & Fall 2026. Spots are limited — reach out early to secure your date.
     </div>
   </div>
 
   <div class="contact-right">
-    <h2>Tell us about your event</h2>
+    <h2>TELL US ABOUT YOUR EVENT</h2>
     <p class="sub">Fill in the details below and we'll be in touch within 48 hours with next steps and a custom quote.</p>
 
     <form action="mailto:hello@littlestorieseverywhere.com" method="post" enctype="text/plain">
@@ -241,7 +246,6 @@
           <input type="email" name="email" placeholder="your@email.com">
         </div>
       </div>
-
       <div class="form-row">
         <div class="form-group">
           <label>Event type</label>
@@ -260,16 +264,15 @@
           <input type="text" name="date" placeholder="Month & year">
         </div>
       </div>
-
       <div class="form-row">
         <div class="form-group">
-          <label>Estimated guest count</label>
+          <label>Guest count</label>
           <input type="text" name="guests" placeholder="Approx. number">
         </div>
         <div class="form-group">
-          <label>Approximate budget</label>
+          <label>Budget range</label>
           <select name="budget">
-            <option value="">Select budget range</option>
+            <option value="">Select budget</option>
             <option>Under $500</option>
             <option>$500 – $1,000</option>
             <option>$1,000 – $2,000</option>
@@ -278,12 +281,10 @@
           </select>
         </div>
       </div>
-
       <div class="form-group">
         <label>Tell us about your vision</label>
         <textarea name="vision" placeholder="Describe the vibe, the colours, the feeling you want — anything that helps us understand your event..."></textarea>
       </div>
-
       <button type="submit" class="form-submit">Send inquiry</button>
       <p class="form-note">We respond within 48 hours. You can also DM us directly on Instagram for a faster response.</p>
     </form>
@@ -291,18 +292,34 @@
 </div>
 
 <footer>
-  <div class="footer-logo">Little Stories Everywhere</div>
-  <div class="footer-copy">© 2026 Little Stories Everywhere</div>
-  <div class="footer-location">Vancouver, BC</div>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo-text">Little Stories Everywhere</div>
+      <div class="footer-tagline">Vancouver Event Planning & Styling</div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Our Story</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get in touch</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/littlestorieseverywhere" target="_blank">Instagram</a></li>
+        <li><a href="mailto:hello@littlestorieseverywhere.com">Email us</a></li>
+        <li><a href="contact.html">Book a consultation</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Little Stories Everywhere. Vancouver, BC.</div>
+    <div class="footer-copy">Every event tells a story.</div>
+  </div>
 </footer>
-
-<script>
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-    setTimeout(() => { ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }, 80);
-  });
-</script>
 </body>
 </html>

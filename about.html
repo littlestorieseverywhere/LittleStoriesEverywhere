@@ -3,236 +3,302 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Little Stories Everywhere</title>
+<title>Our Story — Little Stories Everywhere</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #FAF7F2; --warm-white: #FDF9F4;
-    --deep-rose: #8B3A52; --blush: #D4A0A0;
-    --sage: #7A8C72; --charcoal: #2C2C2C;
-    --mid: #6B6060; --gold: #C9A96E;
-    --border: rgba(139,58,82,0.15);
-  }
+  :root { --black: #0A0A0A; --white: #FFFFFF; --off-white: #F8F8F8; --gray: #888888; --light-gray: #E8E8E8; --border: #E0E0E0; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); cursor: none; }
-  .cursor { width: 8px; height: 8px; background: var(--deep-rose); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.15s ease; transform: translate(-50%, -50%); }
-  .cursor-ring { width: 32px; height: 32px; border: 1px solid var(--deep-rose); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transition: all 0.3s ease; transform: translate(-50%, -50%); opacity: 0.5; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: rgba(250,247,242,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.08em; color: var(--charcoal); text-decoration: none; font-style: italic; }
-  .nav-links { display: flex; gap: 40px; list-style: none; }
-  .nav-links a { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.3s; font-weight: 300; }
-  .nav-links a:hover, .nav-links a.active { color: var(--deep-rose); }
+  body { font-family: 'Jost', sans-serif; background: var(--white); color: var(--black); }
+  .announcement { background: var(--black); color: var(--white); text-align: center; padding: 10px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 300; }
+  nav { background: var(--white); border-bottom: 1px solid var(--border); padding: 0 48px; }
+  .nav-top { display: flex; justify-content: center; align-items: center; padding: 24px 0 16px; }
+  .nav-logo { text-align: center; text-decoration: none; }
+  .nav-logo-main { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 0.05em; color: var(--black); display: block; line-height: 1; }
+  .nav-logo-sub { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gray); font-weight: 300; display: block; margin-top: 2px; }
+  .nav-links { display: flex; justify-content: center; gap: 52px; list-style: none; padding: 0 0 20px; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); text-decoration: none; font-weight: 300; transition: opacity 0.2s; padding-bottom: 4px; }
+  .nav-links a:hover { opacity: 0.5; }
+  .nav-links a.active { border-bottom: 1px solid var(--black); }
 
+  /* PAGE HERO */
   .page-hero {
-    padding: 160px 48px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 80px 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 10vw, 140px);
+    letter-spacing: 0.02em;
+    line-height: 0.9;
+    color: var(--black);
+  }
+
+  /* STORY SECTION */
+  .story-main {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: end;
+    border-bottom: 1px solid var(--border);
   }
 
-  .page-hero-left h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(52px, 7vw, 88px);
+  .story-image {
+    aspect-ratio: 4/5;
+    background: var(--off-white);
+    overflow: hidden;
+    border-right: 1px solid var(--border);
+  }
+
+  .story-image img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); }
+
+  .story-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .story-image-placeholder span { font-family: 'Bebas Neue', sans-serif; font-size: 14px; color: var(--light-gray); letter-spacing: 0.15em; }
+  .story-image-placeholder small { font-size: 10px; color: var(--light-gray); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 300; }
+
+  .story-text {
+    padding: 80px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .story-text .label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gray);
     font-weight: 300;
-    line-height: 1.05;
-    color: var(--charcoal);
-    font-style: italic;
+    margin-bottom: 32px;
   }
 
-  .page-hero-left h1 em { color: var(--deep-rose); font-style: normal; }
-
-  .page-hero-right {
-    padding-bottom: 12px;
-  }
-
-  .page-hero-right p {
+  .story-text p {
     font-size: 15px;
-    color: var(--mid);
+    color: var(--black);
     line-height: 2;
     font-weight: 300;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
-  .divider { width: 48px; height: 1px; background: var(--deep-rose); margin: 40px 0; }
-
-  .about-body {
+  /* VALUES */
+  .values {
+    padding: 100px 48px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 48px 120px;
   }
 
-  .about-values {
+  .values-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gray);
+    font-weight: 300;
+    margin-bottom: 64px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .values-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .values-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    margin-top: 80px;
+    gap: 48px;
   }
 
-  .value-card {
-    padding: 52px 40px;
-    background: var(--warm-white);
-  }
+  .value-item { border-top: 2px solid var(--black); padding-top: 28px; }
 
-  .value-icon {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 40px;
-    color: var(--deep-rose);
-    margin-bottom: 20px;
-    font-style: italic;
+  .value-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--light-gray);
+    line-height: 1;
+    margin-bottom: 12px;
   }
 
   .value-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--charcoal);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    color: var(--black);
     margin-bottom: 12px;
-    font-style: italic;
   }
 
-  .value-desc {
-    font-size: 13px;
-    color: var(--mid);
-    line-height: 1.8;
-    font-weight: 300;
-  }
+  .value-desc { font-size: 13px; color: var(--gray); line-height: 1.8; font-weight: 300; }
 
-  .about-quote {
-    padding: 80px 48px;
-    background: var(--charcoal);
+  /* QUOTE */
+  .quote-section {
+    background: var(--black);
+    padding: 100px 48px;
     text-align: center;
-    margin: 0;
   }
 
-  .about-quote blockquote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(24px, 3vw, 40px);
-    font-weight: 300;
-    color: var(--cream);
-    font-style: italic;
-    line-height: 1.5;
-    max-width: 800px;
+  .quote-section blockquote {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 72px);
+    letter-spacing: 0.03em;
+    color: var(--white);
+    line-height: 1.1;
+    max-width: 900px;
     margin: 0 auto 24px;
   }
 
-  .about-quote cite {
+  .quote-section cite {
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--blush);
+    color: rgba(255,255,255,0.4);
     font-style: normal;
     font-weight: 300;
   }
 
+  /* CTA */
   .about-cta {
-    padding: 120px 48px;
+    padding: 100px 48px;
     text-align: center;
+    border-top: 1px solid var(--border);
   }
 
-  .about-cta h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 4vw, 52px);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--charcoal);
-    margin-bottom: 20px;
-  }
+  .about-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 6vw, 80px); letter-spacing: 0.02em; color: var(--black); margin-bottom: 20px; }
+  .about-cta p { font-size: 14px; color: var(--gray); font-weight: 300; line-height: 1.8; margin-bottom: 40px; }
 
-  .about-cta p { font-size: 14px; color: var(--mid); margin-bottom: 40px; font-weight: 300; line-height: 1.8; }
+  .btn-black { display: inline-block; padding: 14px 40px; background: var(--black); color: var(--white); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 300; transition: all 0.3s; border: 1px solid var(--black); }
+  .btn-black:hover { background: var(--white); color: var(--black); }
 
-  .btn-primary { background: var(--deep-rose); color: white; padding: 16px 40px; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 300; transition: all 0.3s; border: 1px solid var(--deep-rose); }
-  .btn-primary:hover { background: transparent; color: var(--deep-rose); }
-
-  footer { padding: 40px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 300; font-style: italic; color: var(--charcoal); }
-  .footer-copy { font-size: 11px; color: var(--mid); letter-spacing: 0.1em; font-weight: 300; }
-  .footer-location { font-size: 11px; color: var(--mid); letter-spacing: 0.1em; font-weight: 300; }
+  footer { background: var(--black); padding: 60px 48px 40px; }
+  .footer-top { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .footer-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--white); letter-spacing: 0.05em; margin-bottom: 12px; }
+  .footer-tagline { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; font-weight: 300; }
+  .footer-col h4 { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 300; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; font-weight: 300; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--white); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.3); font-weight: 300; letter-spacing: 0.08em; }
 
   @media (max-width: 768px) {
-    nav { padding: 20px 24px; } .nav-links { gap: 20px; }
-    .page-hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 40px; }
-    .about-body { padding: 0 24px 80px; }
-    .about-values { grid-template-columns: 1fr; }
-    .about-quote { padding: 60px 24px; }
-    footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+    nav { padding: 0 24px; } .nav-links { gap: 24px; flex-wrap: wrap; }
+    .page-hero { padding: 60px 24px; }
+    .story-main { grid-template-columns: 1fr; }
+    .story-image { border-right: none; border-bottom: 1px solid var(--border); }
+    .story-text { padding: 48px 24px; }
+    .values { padding: 60px 24px; }
+    .values-grid { grid-template-columns: 1fr; gap: 32px; }
+    .quote-section { padding: 60px 24px; }
+    .about-cta { padding: 60px 24px; }
+    footer { padding: 48px 24px 32px; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 12px; }
   }
 </style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
+<div class="announcement">Summer 2026 bookings now open — Vancouver event planning & styling</div>
 <nav>
-  <a href="index.html" class="nav-logo">Little Stories Everywhere</a>
+  <div class="nav-top">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-main">Little Stories Everywhere</span>
+      <span class="nav-logo-sub">Vancouver</span>
+    </a>
+  </div>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="about.html" class="active">Our Story</a></li>
     <li><a href="services.html">Services</a></li>
     <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
   </ul>
 </nav>
 
 <div class="page-hero">
-  <div class="page-hero-left">
-    <h1>The woman<br>behind the <em>story</em></h1>
+  <h1>OUR<br>STORY</h1>
+</div>
+
+<div class="story-main">
+  <div class="story-image">
+    <div class="story-image-placeholder">
+      <span>YOUR PHOTO HERE</span>
+      <small>A photo of you — ideally with your work</small>
+    </div>
   </div>
-  <div class="page-hero-right">
-    <p>Little Stories Everywhere was born from a belief that every event deserves to feel like a world — not just a party. A world with a mood, a colour, a feeling that stays with you long after the candles burn out.</p>
-    <p>Based in Vancouver, BC, I am an event planner and prop designer who handcrafts every piece myself. From giant foam bow arches to paper flower walls, rattan candelabras to draped fabric ceilings — everything you see at a Little Stories event was made with intention and care.</p>
-    <div class="divider"></div>
+  <div class="story-text">
+    <div class="label">Little Stories Everywhere — Vancouver</div>
+    <p>Little Stories Everywhere was born from a simple belief: every event deserves to feel like a world of its own. Not just a party. A world with a mood, a colour palette, a feeling that lingers long after the candles burn out.</p>
+    <p>I am a Vancouver-based event planner and prop designer who handcrafts every piece myself. From giant foam bow arches to paper flower walls, rattan candelabras to draped fabric ceilings — everything you see at a Little Stories event was made with intention.</p>
     <p>What makes Little Stories different is simple: I don't just plan events. I build atmospheres. I tell stories through décor, light, texture, and detail — and I don't stop until it gives you that feeling. You know the one. The moment you walk in and just stop.</p>
   </div>
 </div>
 
-<div class="about-body">
-  <div class="about-values">
-    <div class="value-card">
-      <div class="value-icon">✦</div>
+<div class="values">
+  <div class="values-label">What we stand for</div>
+  <div class="values-grid">
+    <div class="value-item">
+      <div class="value-num">01</div>
       <div class="value-title">Handcrafted everything</div>
-      <p class="value-desc">Every prop is made by hand. No mass-produced backdrops, no generic rental pieces. When you hire Little Stories, you get something that exists nowhere else in Vancouver.</p>
+      <p class="value-desc">No mass-produced pieces. No generic rentals. Every prop is made from scratch, specifically for your event. When you hire Little Stories, you get something that exists nowhere else in Vancouver.</p>
     </div>
-    <div class="value-card">
-      <div class="value-icon">◈</div>
+    <div class="value-item">
+      <div class="value-num">02</div>
       <div class="value-title">Whimsical at heart</div>
       <p class="value-desc">The aesthetic is maximalist, playful, and unapologetically beautiful. We don't do basic. We do the kind of events that make people pull out their phones the moment they walk in.</p>
     </div>
-    <div class="value-card">
-      <div class="value-icon">❋</div>
+    <div class="value-item">
+      <div class="value-num">03</div>
       <div class="value-title">Your story, always</div>
       <p class="value-desc">Every event we create is specific to you — your colours, your feeling, your moment. We bring the expertise. You bring the vision. Together we build something unforgettable.</p>
     </div>
   </div>
 </div>
 
-<div class="about-quote">
-  <blockquote>"Every event tells a story. I'm here to make yours the one people never forget."</blockquote>
+<div class="quote-section">
+  <blockquote>"EVERY EVENT TELLS A STORY. I'M HERE TO MAKE YOURS THE ONE PEOPLE NEVER FORGET."</blockquote>
   <cite>— Little Stories Everywhere</cite>
 </div>
 
 <div class="about-cta">
-  <h2>Let's create something beautiful</h2>
+  <h2>LET'S CREATE SOMETHING BEAUTIFUL</h2>
   <p>Summer 2026 bookings are open. Weddings, showers, birthdays — let's talk about your event.</p>
-  <a href="contact.html" class="btn-primary">Start the conversation</a>
+  <a href="contact.html" class="btn-black">Start the conversation</a>
 </div>
 
 <footer>
-  <div class="footer-logo">Little Stories Everywhere</div>
-  <div class="footer-copy">© 2026 Little Stories Everywhere</div>
-  <div class="footer-location">Vancouver, BC</div>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo-text">Little Stories Everywhere</div>
+      <div class="footer-tagline">Vancouver Event Planning & Styling</div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Our Story</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get in touch</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/littlestorieseverywhere" target="_blank">Instagram</a></li>
+        <li><a href="mailto:hello@littlestorieseverywhere.com">Email us</a></li>
+        <li><a href="contact.html">Book a consultation</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Little Stories Everywhere. Vancouver, BC.</div>
+    <div class="footer-copy">Every event tells a story.</div>
+  </div>
 </footer>
-
-<script>
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-    setTimeout(() => { ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }, 80);
-  });
-</script>
 </body>
 </html>
