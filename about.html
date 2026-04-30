@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Little Stories Everywhere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2; --warm-white: #FDF9F4;
+    --deep-rose: #8B3A52; --blush: #D4A0A0;
+    --sage: #7A8C72; --charcoal: #2C2C2C;
+    --mid: #6B6060; --gold: #C9A96E;
+    --border: rgba(139,58,82,0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); cursor: none; }
+  .cursor { width: 8px; height: 8px; background: var(--deep-rose); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.15s ease; transform: translate(-50%, -50%); }
+  .cursor-ring { width: 32px; height: 32px; border: 1px solid var(--deep-rose); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transition: all 0.3s ease; transform: translate(-50%, -50%); opacity: 0.5; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: rgba(250,247,242,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.08em; color: var(--charcoal); text-decoration: none; font-style: italic; }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.3s; font-weight: 300; }
+  .nav-links a:hover, .nav-links a.active { color: var(--deep-rose); }
+
+  .page-hero {
+    padding: 160px 48px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+  }
+
+  .page-hero-left h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--charcoal);
+    font-style: italic;
+  }
+
+  .page-hero-left h1 em { color: var(--deep-rose); font-style: normal; }
+
+  .page-hero-right {
+    padding-bottom: 12px;
+  }
+
+  .page-hero-right p {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 2;
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+
+  .divider { width: 48px; height: 1px; background: var(--deep-rose); margin: 40px 0; }
+
+  .about-body {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 120px;
+  }
+
+  .about-values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 80px;
+  }
+
+  .value-card {
+    padding: 52px 40px;
+    background: var(--warm-white);
+  }
+
+  .value-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    color: var(--deep-rose);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .value-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  .value-desc {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .about-quote {
+    padding: 80px 48px;
+    background: var(--charcoal);
+    text-align: center;
+    margin: 0;
+  }
+
+  .about-quote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 300;
+    color: var(--cream);
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+
+  .about-quote cite {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blush);
+    font-style: normal;
+    font-weight: 300;
+  }
+
+  .about-cta {
+    padding: 120px 48px;
+    text-align: center;
+  }
+
+  .about-cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+
+  .about-cta p { font-size: 14px; color: var(--mid); margin-bottom: 40px; font-weight: 300; line-height: 1.8; }
+
+  .btn-primary { background: var(--deep-rose); color: white; padding: 16px 40px; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 300; transition: all 0.3s; border: 1px solid var(--deep-rose); }
+  .btn-primary:hover { background: transparent; color: var(--deep-rose); }
+
+  footer { padding: 40px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 300; font-style: italic; color: var(--charcoal); }
+  .footer-copy { font-size: 11px; color: var(--mid); letter-spacing: 0.1em; font-weight: 300; }
+  .footer-location { font-size: 11px; color: var(--mid); letter-spacing: 0.1em; font-weight: 300; }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; } .nav-links { gap: 20px; }
+    .page-hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 40px; }
+    .about-body { padding: 0 24px 80px; }
+    .about-values { grid-template-columns: 1fr; }
+    .about-quote { padding: 60px 24px; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Little Stories Everywhere</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-left">
+    <h1>The woman<br>behind the <em>story</em></h1>
+  </div>
+  <div class="page-hero-right">
+    <p>Little Stories Everywhere was born from a belief that every event deserves to feel like a world — not just a party. A world with a mood, a colour, a feeling that stays with you long after the candles burn out.</p>
+    <p>Based in Vancouver, BC, I am an event planner and prop designer who handcrafts every piece myself. From giant foam bow arches to paper flower walls, rattan candelabras to draped fabric ceilings — everything you see at a Little Stories event was made with intention and care.</p>
+    <div class="divider"></div>
+    <p>What makes Little Stories different is simple: I don't just plan events. I build atmospheres. I tell stories through décor, light, texture, and detail — and I don't stop until it gives you that feeling. You know the one. The moment you walk in and just stop.</p>
+  </div>
+</div>
+
+<div class="about-body">
+  <div class="about-values">
+    <div class="value-card">
+      <div class="value-icon">✦</div>
+      <div class="value-title">Handcrafted everything</div>
+      <p class="value-desc">Every prop is made by hand. No mass-produced backdrops, no generic rental pieces. When you hire Little Stories, you get something that exists nowhere else in Vancouver.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">◈</div>
+      <div class="value-title">Whimsical at heart</div>
+      <p class="value-desc">The aesthetic is maximalist, playful, and unapologetically beautiful. We don't do basic. We do the kind of events that make people pull out their phones the moment they walk in.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">❋</div>
+      <div class="value-title">Your story, always</div>
+      <p class="value-desc">Every event we create is specific to you — your colours, your feeling, your moment. We bring the expertise. You bring the vision. Together we build something unforgettable.</p>
+    </div>
+  </div>
+</div>
+
+<div class="about-quote">
+  <blockquote>"Every event tells a story. I'm here to make yours the one people never forget."</blockquote>
+  <cite>— Little Stories Everywhere</cite>
+</div>
+
+<div class="about-cta">
+  <h2>Let's create something beautiful</h2>
+  <p>Summer 2026 bookings are open. Weddings, showers, birthdays — let's talk about your event.</p>
+  <a href="contact.html" class="btn-primary">Start the conversation</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Little Stories Everywhere</div>
+  <div class="footer-copy">© 2026 Little Stories Everywhere</div>
+  <div class="footer-location">Vancouver, BC</div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+    setTimeout(() => { ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }, 80);
+  });
+</script>
+</body>
+</html>

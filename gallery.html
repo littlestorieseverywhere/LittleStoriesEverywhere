@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Little Stories Everywhere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --cream: #FAF7F2; --warm-white: #FDF9F4; --deep-rose: #8B3A52; --blush: #D4A0A0; --charcoal: #2C2C2C; --mid: #6B6060; --border: rgba(139,58,82,0.15); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); cursor: none; }
+  .cursor { width: 8px; height: 8px; background: var(--deep-rose); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.15s ease; transform: translate(-50%, -50%); }
+  .cursor-ring { width: 32px; height: 32px; border: 1px solid var(--deep-rose); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transition: all 0.3s ease; transform: translate(-50%, -50%); opacity: 0.5; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: rgba(250,247,242,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.08em; color: var(--charcoal); text-decoration: none; font-style: italic; }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.3s; font-weight: 300; }
+  .nav-links a:hover, .nav-links a.active { color: var(--deep-rose); }
+
+  .page-header { padding: 160px 48px 80px; text-align: center; }
+  .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 7vw, 88px); font-weight: 300; font-style: italic; color: var(--charcoal); margin-bottom: 20px; }
+  .page-header p { font-size: 14px; color: var(--mid); font-weight: 300; line-height: 1.8; max-width: 500px; margin: 0 auto; }
+
+  .gallery-note {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+    text-align: center;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    padding: 60px 48px;
+    margin: 0 48px 80px;
+  }
+
+  .gallery-note h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+  }
+
+  .gallery-note p { font-size: 14px; color: var(--mid); font-weight: 300; line-height: 1.8; margin-bottom: 32px; }
+
+  .instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: var(--deep-rose);
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 300;
+    transition: all 0.3s;
+    border: 1px solid var(--deep-rose);
+  }
+
+  .instagram-link:hover { background: transparent; color: var(--deep-rose); }
+
+  .gallery-categories {
+    padding: 0 48px 120px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .category-row {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 60px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .category-row:last-child { border-bottom: 1px solid var(--border); }
+
+  .category-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+
+  .category-info p { font-size: 13px; color: var(--mid); line-height: 1.8; font-weight: 300; }
+
+  .category-placeholder {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+
+  .photo-placeholder {
+    aspect-ratio: 1;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    transition: background 0.3s;
+  }
+
+  .photo-placeholder:hover { background: rgba(139,58,82,0.05); }
+
+  .photo-placeholder span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: rgba(139,58,82,0.2);
+    font-style: italic;
+  }
+
+  .photo-placeholder small {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(139,58,82,0.3);
+    font-weight: 300;
+  }
+
+  footer { padding: 40px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 300; font-style: italic; color: var(--charcoal); }
+  .footer-copy { font-size: 11px; color: var(--mid); letter-spacing: 0.1em; font-weight: 300; }
+  .footer-location { font-size: 11px; color: var(--mid); letter-spacing: 0.1em; font-weight: 300; }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; } .nav-links { gap: 20px; }
+    .page-header { padding: 120px 24px 60px; }
+    .gallery-note { margin: 0 24px 60px; padding: 40px 24px; }
+    .gallery-categories { padding: 0 24px 80px; }
+    .category-row { grid-template-columns: 1fr; gap: 32px; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Little Stories Everywhere</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <h1>Our work</h1>
+  <p>Every event we create is one of a kind. Here's a glimpse into the worlds we've built.</p>
+</div>
+
+<div class="gallery-note">
+  <h2>See the full story on Instagram</h2>
+  <p>Our most current work, behind-the-scenes content, tutorials, and the events we're creating right now live on our Instagram. Follow along and DM us to start planning yours.</p>
+  <a href="https://www.instagram.com/littlestorieseverywhere" target="_blank" class="instagram-link">
+    @littlestorieseverywhere
+  </a>
+</div>
+
+<div class="gallery-categories">
+  <div class="category-row">
+    <div class="category-info">
+      <h3>Weddings</h3>
+      <p>Intimate ceremonies and full celebrations — styled with handcrafted props, florals, and every detail in its right place.</p>
+    </div>
+    <div class="category-placeholder">
+      <div class="photo-placeholder"><span>✦</span><small>Coming soon</small></div>
+      <div class="photo-placeholder"><span>✦</span><small>Coming soon</small></div>
+      <div class="photo-placeholder"><span>✦</span><small>Coming soon</small></div>
+    </div>
+  </div>
+
+  <div class="category-row">
+    <div class="category-info">
+      <h3>Showers</h3>
+      <p>Baby showers and bridal showers that feel like stepping into a dream — whimsical, maximalist, and entirely personal.</p>
+    </div>
+    <div class="category-placeholder">
+      <div class="photo-placeholder"><span>❋</span><small>Coming soon</small></div>
+      <div class="photo-placeholder"><span>❋</span><small>Coming soon</small></div>
+      <div class="photo-placeholder"><span>❋</span><small>Coming soon</small></div>
+    </div>
+  </div>
+
+  <div class="category-row">
+    <div class="category-info">
+      <h3>Birthdays</h3>
+      <p>Milestone celebrations that feel as significant as they are — grand, beautiful, and impossible to forget.</p>
+    </div>
+    <div class="category-placeholder">
+      <div class="photo-placeholder"><span>◈</span><small>Coming soon</small></div>
+      <div class="photo-placeholder"><span>◈</span><small>Coming soon</small></div>
+      <div class="photo-placeholder"><span>◈</span><small>Coming soon</small></div>
+    </div>
+  </div>
+
+  <div class="category-row">
+    <div class="category-info">
+      <h3>Props & handmade pieces</h3>
+      <p>Every prop is made by hand. Giant bow arches, paper flower walls, rattan candelabras — each one unique.</p>
+    </div>
+    <div class="category-placeholder">
+      <div class="photo-placeholder"><span>∞</span><small>Coming soon</small></div>
+      <div class="photo-placeholder"><span>∞</span><small>Coming soon</small></div>
+      <div class="photo-placeholder"><span>∞</span><small>Coming soon</small></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Little Stories Everywhere</div>
+  <div class="footer-copy">© 2026 Little Stories Everywhere</div>
+  <div class="footer-location">Vancouver, BC</div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+    setTimeout(() => { ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }, 80);
+  });
+</script>
+</body>
+</html>

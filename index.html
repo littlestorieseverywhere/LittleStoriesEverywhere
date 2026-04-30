@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Stories Everywhere — Vancouver Event Planning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #FDF9F4;
+    --deep-rose: #8B3A52;
+    --blush: #D4A0A0;
+    --sage: #7A8C72;
+    --charcoal: #2C2C2C;
+    --mid: #6B6060;
+    --gold: #C9A96E;
+    --border: rgba(139,58,82,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--deep-rose);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1px solid var(--deep-rose);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--charcoal);
+    text-decoration: none;
+    font-style: italic;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 300;
+  }
+
+  .nav-links a:hover { color: var(--deep-rose); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 48px 80px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(212,160,160,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(122,140,114,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 40% at 50% 10%, rgba(201,169,110,0.06) 0%, transparent 60%);
+  }
+
+  .hero-ornament {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 320px;
+    font-weight: 300;
+    color: rgba(139,58,82,0.04);
+    letter-spacing: -0.05em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    font-style: italic;
+  }
+
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--deep-rose);
+    font-weight: 300;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--charcoal);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--deep-rose);
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    color: var(--mid);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 52px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.7s forwards;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+
+  .btn-primary {
+    background: var(--deep-rose);
+    color: white;
+    padding: 16px 40px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 300;
+    transition: all 0.3s;
+    border: 1px solid var(--deep-rose);
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--deep-rose);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--charcoal);
+    padding: 16px 40px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 300;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--deep-rose);
+    color: var(--deep-rose);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+  }
+
+  .hero-scroll span {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-weight: 300;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--deep-rose), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  /* SERVICES PREVIEW */
+  .services-preview {
+    padding: 120px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 80px;
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--deep-rose);
+    letter-spacing: 0.1em;
+    font-style: italic;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.2;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-left: 24px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .service-card {
+    padding: 52px 40px;
+    background: var(--warm-white);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--deep-rose);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    transform-origin: left;
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { background: white; }
+
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(139,58,82,0.1);
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .service-arrow {
+    margin-top: 28px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--deep-rose);
+    font-weight: 300;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .service-card:hover .service-arrow { opacity: 1; }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    padding: 120px 48px;
+    background: var(--charcoal);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-strip-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 32px;
+    font-style: italic;
+  }
+
+  .about-strip-text h2 span { color: var(--blush); }
+
+  .about-strip-text p {
+    font-size: 14px;
+    color: rgba(250,247,242,0.6);
+    line-height: 2;
+    font-weight: 300;
+    margin-bottom: 40px;
+  }
+
+  .about-strip-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .stat-item {
+    border-top: 1px solid rgba(250,247,242,0.15);
+    padding-top: 24px;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--blush);
+    font-style: italic;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.4);
+    font-weight: 300;
+    margin-top: 8px;
+  }
+
+  /* MARQUEE */
+  .marquee-section {
+    padding: 40px 0;
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--warm-white);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-item {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--mid);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .marquee-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--deep-rose);
+    display: inline-block;
+  }
+
+  /* CONTACT STRIP */
+  .contact-strip {
+    padding: 120px 48px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .contact-strip h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .contact-strip h2 em { color: var(--deep-rose); }
+
+  .contact-strip p {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 52px;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--cream);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--charcoal);
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: var(--mid);
+    letter-spacing: 0.1em;
+    font-weight: 300;
+  }
+
+  .footer-location {
+    font-size: 11px;
+    color: var(--mid);
+    letter-spacing: 0.1em;
+    font-weight: 300;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { gap: 20px; }
+    .hero { padding: 100px 24px 80px; }
+    .services-preview { padding: 80px 24px; }
+    .services-grid { grid-template-columns: 1fr; gap: 2px; }
+    .about-strip { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+    .contact-strip { padding: 80px 24px; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Little Stories Everywhere</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ornament">LSE</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Vancouver Event Planning & Styling</p>
+    <h1 class="hero-title">Every event tells<br>a <em>story.</em></h1>
+    <p class="hero-sub">Weddings · Baby Showers · Bridal Showers · Birthdays<br>Whimsical, handcrafted, unforgettable.</p>
+    <div class="hero-cta-group">
+      <a href="contact.html" class="btn-primary">Book a consultation</a>
+      <a href="gallery.html" class="btn-outline">View our work</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item">Weddings <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Baby Showers <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Bridal Showers <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Birthday Celebrations <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Handcrafted Backdrops <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Custom Props <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Weddings <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Baby Showers <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Bridal Showers <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Birthday Celebrations <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Handcrafted Backdrops <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Custom Props <span class="marquee-dot"></span></div>
+  </div>
+</div>
+
+<section class="services-preview">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">What we do</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="services-grid">
+    <a href="services.html" class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-name">Weddings</div>
+      <p class="service-desc">From intimate ceremonies to full celebrations — day-of coordination and partial planning tailored to your vision.</p>
+      <div class="service-arrow">Learn more →</div>
+    </a>
+    <a href="services.html" class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-name">Showers & Celebrations</div>
+      <p class="service-desc">Baby showers and bridal showers filled with handcrafted details, florals, and a story that's entirely yours.</p>
+      <div class="service-arrow">Learn more →</div>
+    </a>
+    <a href="services.html" class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-name">Birthdays</div>
+      <p class="service-desc">Milestone birthdays deserving of a grand celebration — whimsical, maximalist, and completely unforgettable.</p>
+      <div class="service-arrow">Learn more →</div>
+    </a>
+  </div>
+</section>
+
+<section class="about-strip">
+  <div class="about-strip-text">
+    <h2>We create <span>worlds,</span><br>not just events.</h2>
+    <p>Little Stories Everywhere is a Vancouver-based event planning and styling studio. Every prop is handcrafted, every detail is intentional, and every event is designed to make people stop and say — where is that?</p>
+    <a href="about.html" class="btn-outline" style="border-color:rgba(250,247,242,0.2); color:var(--cream);">Our story</a>
+  </div>
+  <div class="about-strip-stats">
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Handcrafted props</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Event specialties</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">YVR</div>
+      <div class="stat-label">Based in Vancouver</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Stories to tell</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-strip">
+  <h2>Ready to tell your <em>story?</em></h2>
+  <p>Every event begins with a conversation. Tell us about your vision and we'll bring it to life — beautifully, whimsically, and entirely your own.</p>
+  <div class="contact-links">
+    <a href="contact.html" class="btn-primary">Get in touch</a>
+    <a href="gallery.html" class="btn-outline">See our work</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Little Stories Everywhere</div>
+  <div class="footer-copy">© 2026 Little Stories Everywhere</div>
+  <div class="footer-location">Vancouver, BC</div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => {
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    }, 80);
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%,-50%) scale(2)');
+    el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%,-50%) scale(1)');
+  });
+</script>
+</body>
+</html>
