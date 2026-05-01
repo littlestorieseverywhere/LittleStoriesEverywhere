@@ -582,8 +582,7 @@ a { color: inherit; text-decoration: none; }
   .story-section { padding: 64px 24px; }
   .story-inner { grid-template-columns: 1fr; gap: 36px; }
 
-  .contact-section { padding: 64px 24px; }
-  .contact-inner { grid-template-columns: 1fr; gap: 44px; }
+  .contact-section { padding: 40px 24px; }
   .form-row { grid-template-columns: 1fr; }
 
   .site-footer { padding: 28px 24px; }
