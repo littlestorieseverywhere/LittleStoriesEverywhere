@@ -1,10 +1,29 @@
 // =========================================
-// LITTLE STORIES EVERYWHERE — SCRIPTS
+// PAGE NAVIGATION
 // =========================================
 
-// Scroll shadow on header
-const header = document.getElementById('top') || document.querySelector('.site-header');
+function showPage(pageId) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Show target
+  document.getElementById('page-' + pageId).classList.add('active');
+  // Update nav active state
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('onclick') && link.getAttribute('onclick').includes("'" + pageId + "'")) {
+      link.classList.add('active');
+    }
+  });
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// =========================================
+// HEADER SCROLL SHADOW
+// =========================================
+
 window.addEventListener('scroll', () => {
+  const header = document.getElementById('site-header');
   if (window.scrollY > 10) {
     header.classList.add('scrolled');
   } else {
@@ -12,64 +31,30 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Active nav link on scroll
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-link');
+// =========================================
+// MOBILE MENU
+// =========================================
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + entry.target.id) {
-          link.classList.add('active');
-        }
-      });
-    }
-  });
-}, { rootMargin: '-40% 0px -55% 0px' });
-
-sections.forEach(section => observer.observe(section));
-
-// Mobile menu toggle
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open');
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.toggle('open');
 });
 
-// Close mobile menu on link click
-document.querySelectorAll('.mobile-link').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-  });
-});
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+}
 
-// Fade-in on scroll
-const fadeEls = document.querySelectorAll('.fade-in');
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      fadeObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
+// =========================================
+// CONTACT FORM
+// =========================================
+// To receive emails, sign up free at formspree.io,
+// create a form, and replace the action URL below:
+// form.setAttribute('action', 'https://formspree.io/f/YOUR_ID');
 
-fadeEls.forEach(el => fadeObserver.observe(el));
-
-// Contact form — simple submit handler
-// Replace this with your actual form backend (Formspree, Netlify Forms, etc.)
 const form = document.getElementById('contact-form');
-const formSuccess = document.getElementById('form-success');
-
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    // TODO: wire up to Formspree or your form handler
-    // For now, just shows the success message
     form.style.display = 'none';
-    formSuccess.style.display = 'block';
+    document.getElementById('form-success').style.display = 'block';
   });
 }

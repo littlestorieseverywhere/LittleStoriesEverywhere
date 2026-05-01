@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Little Stories Everywhere — Vancouver Event Design</title>
-  <meta name="description" content="Little Stories Everywhere — Event design and styling based in Vancouver, BC. Weddings, proposals, baby showers, birthdays, and custom handmade decor." />
+  <meta name="description" content="Little Stories Everywhere — Event design and styling based in Vancouver, BC." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -20,154 +20,196 @@
   </div>
 
   <!-- HEADER -->
-  <header class="site-header" id="top">
+  <header class="site-header" id="site-header">
     <div class="header-wordmark">
-      <a href="#home">Little Stories Everywhere</a>
+      <a href="#" onclick="showPage('home'); return false;">Little Stories Everywhere</a>
     </div>
     <nav class="main-nav">
-      <a href="#home" class="nav-link active">Home</a>
-      <a href="#story" class="nav-link">Our Story</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a class="nav-link active" onclick="showPage('home')">Home</a>
+      <a class="nav-link" onclick="showPage('story')">Our Story</a>
+      <a class="nav-link" onclick="showPage('contact')">Contact</a>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
     <div class="mobile-menu" id="mobile-menu">
-      <a href="#home" class="mobile-link">Home</a>
-      <a href="#story" class="mobile-link">Our Story</a>
-      <a href="#contact" class="mobile-link">Contact</a>
+      <a class="mobile-link" onclick="showPage('home'); closeMobileMenu();">Home</a>
+      <a class="mobile-link" onclick="showPage('story'); closeMobileMenu();">Our Story</a>
+      <a class="mobile-link" onclick="showPage('contact'); closeMobileMenu();">Contact</a>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-layout">
-      <div class="hero-left">
-        <h1 class="hero-big-left">
-          <span>EVERY</span>
-          <span>EVENT</span>
-        </h1>
-      </div>
-      <div class="hero-center">
-        <div class="hero-photo-placeholder">
-          <span>Your photo here</span>
+  <!-- ===================== HOME PAGE ===================== -->
+  <div class="page active" id="page-home">
+
+    <section class="hero">
+      <div class="hero-layout">
+        <div class="hero-left">
+          <h1 class="hero-big-left">
+            <span>EVERY</span>
+            <span>EVENT</span>
+          </h1>
+        </div>
+        <div class="hero-center">
+          <!-- Replace with: <img src="yourphoto.jpg" alt="Little Stories Everywhere" /> -->
+          <div class="hero-photo-placeholder"><span>Your photo here</span></div>
+        </div>
+        <div class="hero-right">
+          <h2 class="hero-big-right">
+            <span class="right-a">A</span>
+            <span class="right-story">STORY</span>
+          </h2>
+          <p class="hero-tags">
+            Weddings &middot; Showers<br>
+            Birthdays &middot; Vancouver
+          </p>
+          <a class="btn-dark" onclick="showPage('contact')">Book a Consultation</a>
         </div>
       </div>
-      <div class="hero-right">
-        <h2 class="hero-big-right">
-          <span class="right-a">A</span>
-          <span class="right-story">STORY</span>
-        </h2>
-        <p class="hero-tags">
-          Weddings &middot; Showers<br>
-          Birthdays &middot; Vancouver
-        </p>
-        <a href="#contact" class="btn-dark">Book a Consultation</a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TAGLINE STRIP -->
-  <div class="tagline-strip">
-    <p>Custom handmade decor &amp; backdrops &mdash; designed to feel like you.</p>
+    <div class="tagline-strip">
+      <p>Custom handmade decor &amp; backdrops &mdash; designed to feel like you.</p>
+    </div>
+
+    <section class="ig-section">
+      <div class="ig-inner">
+        <p class="section-label">Follow Along</p>
+        <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener" class="ig-big-handle">@little.stories.everywhere</a>
+        <!--
+          REPLACE GRID BELOW WITH YOUR INSTAGRAM EMBED WHEN READY
+          Recommended: Elfsight, Beacons, or Snap Widget
+        -->
+        <div class="ig-grid">
+          <div class="ig-tile"></div>
+          <div class="ig-tile"></div>
+          <div class="ig-tile"></div>
+          <div class="ig-tile"></div>
+          <div class="ig-tile"></div>
+          <div class="ig-tile"></div>
+        </div>
+        <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener" class="btn-outline">View on Instagram</a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-logo" onclick="showPage('home')">Little Stories Everywhere</div>
+        <div class="footer-nav">
+          <a onclick="showPage('home')">Home</a>
+          <a onclick="showPage('story')">Our Story</a>
+          <a onclick="showPage('contact')">Contact</a>
+        </div>
+        <div class="footer-right">
+          <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener">Instagram</a>
+          <span>&copy; 2025 Little Stories Everywhere. Vancouver, BC.</span>
+        </div>
+      </div>
+    </footer>
+
   </div>
 
-  <!-- OUR STORY -->
-  <section class="story-section" id="story">
-    <div class="story-inner">
-      <p class="section-label">Our Story</p>
-      <div class="story-grid">
-        <div class="story-left">
-          <h2 class="story-display">Details<br><em>matter.</em></h2>
-        </div>
-        <div class="story-right">
-          <p>Hi, I'm Massi — event designer and creator behind Little Stories Everywhere. I've spent years designing moments for the people I love: weddings, proposals, baby showers, birthday celebrations. Every single one photographed beautifully, felt personal, and left people wanting to stay just a little longer.</p>
-          <p>What makes me different isn't just the planning. It's the custom handmade backdrops and decor I build from scratch for every event — pieces you won't find anywhere else, made specifically for you. Nobody else at this level is doing that.</p>
-          <p>Based in Greater Vancouver, available throughout the Sea-to-Sky Corridor and Fraser Valley. If you're ready to build something beautiful together, let's talk.</p>
-          <a href="#contact" class="btn-outline">Let's Work Together</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ===================== OUR STORY PAGE ===================== -->
+  <div class="page" id="page-story">
 
-  <!-- INSTAGRAM GRID -->
-  <section class="ig-section">
-    <div class="ig-inner">
-      <p class="section-label">Follow Along</p>
-      <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener" class="ig-big-handle">@little.stories.everywhere</a>
-      <div class="ig-grid">
-        <div class="ig-tile"></div>
-        <div class="ig-tile"></div>
-        <div class="ig-tile"></div>
-        <div class="ig-tile"></div>
-        <div class="ig-tile"></div>
-        <div class="ig-tile"></div>
+    <section class="story-section">
+      <div class="story-inner">
+        <p class="section-label">Our Story</p>
+        <div class="story-grid">
+          <div class="story-left">
+            <h2 class="story-display">Details<br><em>matter.</em></h2>
+          </div>
+          <div class="story-right">
+            <p>Hi, I'm Massi — event designer and creator behind Little Stories Everywhere. I've spent years designing moments for the people I love: weddings, proposals, baby showers, birthday celebrations. Every single one photographed beautifully, felt personal, and left people wanting to stay just a little longer.</p>
+            <p>What makes me different isn't just the planning. It's the custom handmade backdrops and decor I build from scratch for every event — pieces you won't find anywhere else, made specifically for you. Nobody else at this level is doing that.</p>
+            <p>Based in Greater Vancouver, available throughout the Sea-to-Sky Corridor and Fraser Valley. If you're ready to build something beautiful together, let's talk.</p>
+            <a class="btn-outline" onclick="showPage('contact')">Let's Work Together</a>
+          </div>
+        </div>
       </div>
-      <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener" class="btn-outline">View on Instagram</a>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT -->
-  <section class="contact-section" id="contact">
-    <div class="contact-inner">
-      <div class="contact-left">
-        <p class="section-label">Contact</p>
-        <h2 class="contact-display">Let's build<br><em>your story.</em></h2>
-        <p class="contact-meta">Based in Vancouver, BC<br>Sea-to-Sky &amp; Fraser Valley</p>
-        <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener" class="contact-ig-link">@little.stories.everywhere</a>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-logo" onclick="showPage('home')">Little Stories Everywhere</div>
+        <div class="footer-nav">
+          <a onclick="showPage('home')">Home</a>
+          <a onclick="showPage('story')">Our Story</a>
+          <a onclick="showPage('contact')">Contact</a>
+        </div>
+        <div class="footer-right">
+          <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener">Instagram</a>
+          <span>&copy; 2025 Little Stories Everywhere. Vancouver, BC.</span>
+        </div>
       </div>
-      <div class="contact-right">
-        <form class="contact-form" id="contact-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fname">Name</label>
-              <input type="text" id="fname" name="name" placeholder="Your name" required />
+    </footer>
+
+  </div>
+
+  <!-- ===================== CONTACT PAGE ===================== -->
+  <div class="page" id="page-contact">
+
+    <section class="contact-section">
+      <div class="contact-inner">
+        <div class="contact-left">
+          <p class="section-label">Contact</p>
+          <h2 class="contact-display">Let's build<br><em>your story.</em></h2>
+          <p class="contact-meta">Based in Vancouver, BC<br>Sea-to-Sky &amp; Fraser Valley</p>
+          <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener" class="contact-ig-link">@little.stories.everywhere</a>
+        </div>
+        <div class="contact-right">
+          <form class="contact-form" id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">Name</label>
+                <input type="text" id="fname" name="name" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="femail">Email</label>
+                <input type="email" id="femail" name="email" placeholder="your@email.com" required />
+              </div>
             </div>
             <div class="form-group">
-              <label for="femail">Email</label>
-              <input type="email" id="femail" name="email" placeholder="your@email.com" required />
+              <label for="ftype">Event Type</label>
+              <select id="ftype" name="event-type">
+                <option value="" disabled selected>Select an event type</option>
+                <option>Wedding</option>
+                <option>Proposal / Engagement</option>
+                <option>Baby Shower</option>
+                <option>Birthday</option>
+                <option>Other Celebration</option>
+              </select>
             </div>
+            <div class="form-group">
+              <label for="fmsg">Tell me about your event</label>
+              <textarea id="fmsg" name="message" placeholder="Date, vision, anything you'd like me to know" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn-dark full">Send Message</button>
+            <p class="form-note">I typically respond within 48 hours.</p>
+          </form>
+          <div class="form-success" id="form-success">
+            <p>Thank you — I'll be in touch soon.</p>
           </div>
-          <div class="form-group">
-            <label for="ftype">Event Type</label>
-            <select id="ftype" name="event-type">
-              <option value="" disabled selected>Select an event type</option>
-              <option>Wedding</option>
-              <option>Proposal / Engagement</option>
-              <option>Baby Shower</option>
-              <option>Birthday</option>
-              <option>Other Celebration</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="fmsg">Tell me about your event</label>
-            <textarea id="fmsg" name="message" placeholder="Date, vision, anything you'd like me to know" rows="5"></textarea>
-          </div>
-          <button type="submit" class="btn-dark full">Send Message</button>
-          <p class="form-note">I typically respond within 48 hours.</p>
-        </form>
-        <div class="form-success" id="form-success">
-          <p>Thank you — I'll be in touch soon.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-logo">Little Stories Everywhere</div>
-      <div class="footer-nav">
-        <a href="#home">Home</a>
-        <a href="#story">Our Story</a>
-        <a href="#contact">Contact</a>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-logo" onclick="showPage('home')">Little Stories Everywhere</div>
+        <div class="footer-nav">
+          <a onclick="showPage('home')">Home</a>
+          <a onclick="showPage('story')">Our Story</a>
+          <a onclick="showPage('contact')">Contact</a>
+        </div>
+        <div class="footer-right">
+          <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener">Instagram</a>
+          <span>&copy; 2025 Little Stories Everywhere. Vancouver, BC.</span>
+        </div>
       </div>
-      <div class="footer-right">
-        <a href="https://instagram.com/little.stories.everywhere" target="_blank" rel="noopener">Instagram</a>
-        <span>&copy; 2025 Little Stories Everywhere. Vancouver, BC.</span>
-      </div>
-    </div>
-  </footer>
+    </footer>
+
+  </div>
 
   <script src="script.js"></script>
 </body>
