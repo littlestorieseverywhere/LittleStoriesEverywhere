@@ -155,101 +155,46 @@ a { color: inherit; text-decoration: none; }
 
 .hero {
   background: var(--white);
-  min-height: calc(100vh - 100px);
-  display: flex;
-  align-items: center;
+  position: relative;
+  height: calc(100vh - 110px);
+  overflow: hidden;
 }
 
-.hero-layout {
-  display: grid;
-  grid-template-columns: 1fr 380px 1fr;
+.hero-split {
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 60px 40px;
-  align-items: center;
+  height: 100%;
+  position: relative;
 }
 
-.hero-left {
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 60px;
-}
-
-.hero-big-left {
-  display: flex;
-  flex-direction: column;
-  line-height: 0.87;
-}
-
-.hero-big-left span {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(72px, 9vw, 148px);
-  letter-spacing: 0.02em;
-  color: var(--black);
-  display: block;
-}
-
-.hero-center { padding: 32px 20px; }
-
-.hero-photo-placeholder {
+.hero-image-side {
   width: 100%;
-  aspect-ratio: 2/3;
-  background: #EDEAE4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--mid);
+  height: 100%;
 }
 
-.hero-center img {
+.hero-image-side img {
   width: 100%;
-  aspect-ratio: 2/3;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
-.hero-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-  padding-top: 40px;
+.hero-text-side {
+  position: absolute;
+  bottom: 48px;
+  right: 56px;
+  max-width: 420px;
+  background: rgba(250, 249, 246, 0.88);
+  padding: 28px 36px;
 }
 
-.hero-big-right {
-  display: flex;
-  flex-direction: column;
-  line-height: 0.87;
-  width: 100%;
-}
-
-.right-a {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(56px, 7vw, 115px);
-  letter-spacing: 0.02em;
+.hero-quote {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(13px, 1.4vw, 18px);
+  font-weight: 300;
+  line-height: 1.8;
   color: var(--black);
-  display: block;
-  text-align: right;
-}
-
-.right-story {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(72px, 9vw, 148px);
-  letter-spacing: 0.02em;
-  color: var(--black);
-  display: block;
-}
-
-.hero-tags {
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--mid);
-  line-height: 2.2;
+  letter-spacing: 0.04em;
 }
 
 .tagline-strip {
