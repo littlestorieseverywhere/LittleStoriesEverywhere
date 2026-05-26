@@ -555,83 +555,40 @@ a { color: inherit; text-decoration: none; }
    RESPONSIVE
    ========================================= */
 
-@media (max-width: 1024px) {
-  .hero-layout { grid-template-columns: 1fr 300px 1fr; }
-  .story-grid { gap: 48px; }
-  .contact-inner { gap: 56px; }
-  .ig-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
 @media (max-width: 768px) {
+  /* HEADER */
   .main-nav { display: none; }
   .hamburger { display: flex; }
-  .site-header { padding: 20px 24px 0; text-align: left; position: relative; }
-  .header-wordmark a { font-size: 16px; margin-bottom: 0; }
+  .site-header { padding: 18px 24px 0; text-align: center; position: relative; }
+  .header-wordmark a { font-size: 15px; margin-bottom: 12px; }
 
-  .hero { height: 80vw; }
-  .hero-text-side { right: 20px; bottom: 20px; padding: 20px 24px; max-width: 80%; }
-  .hero-quote { font-size: clamp(16px, 4vw, 22px); }
+  /* HERO — full width image, quote below */
+  .hero { height: auto; }
+  .hero-split { display: flex; flex-direction: column; }
+  .hero-image-side { width: 100%; height: 92vw; }
+  .hero-image-side img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-text-side {
+    position: static;
+    background: var(--white);
+    padding: 32px 28px;
+    max-width: 100%;
+  }
+  .hero-quote { font-size: 14px; line-height: 1.8; text-align: center; }
 
-  .tagline-strip { padding: 24px; }
-  .ig-section { padding: 56px 24px; }
-  .ig-grid { grid-template-columns: repeat(3, 1fr); }
+  /* OUR STORY */
+  .story-section { padding: 48px 24px; }
+  .story-inner { grid-template-columns: 1fr; gap: 32px; }
+  .story-image-col { width: 100%; }
+  .story-photo-placeholder { aspect-ratio: 4/3; }
+  .story-image-col img { aspect-ratio: 4/3; }
 
-  .story-section { padding: 64px 24px; }
-  .story-inner { grid-template-columns: 1fr; gap: 36px; }
+  /* CONTACT */
+  .contact-section { padding: 48px 24px; }
+  .contact-simple { max-width: 100%; }
 
-  .contact-section { padding: 40px 24px; }
-  .form-row { grid-template-columns: 1fr; }
-
-  .site-footer { padding: 28px 24px; }
-  .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+  /* FOOTER */
+  .site-footer { padding: 24px; }
+  .footer-inner { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+  .footer-nav { gap: 20px; }
   .footer-right { align-items: center; }
-}/* =========================================
-   HOME — HERO
-   ========================================= */
-
-.hero {
-  background: var(--white);
-  position: relative;
-  height: calc(100vh - 110px);
-  overflow: hidden;
 }
-
-.hero-split {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.hero-image-side {
-  width: 100%;
-  height: 100%;
-}
-
-.hero-image-side img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-.hero-text-side {
-  position: absolute;
-  bottom: 48px;
-  right: 56px;
-  max-width: 420px;
-  background: rgba(250, 249, 246, 0.88);
-  padding: 28px 36px;
-}
-
-.hero-quote {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(13px, 1.4vw, 18px);
-  font-weight: 300;
-  font-style: normal;
-  line-height: 1.8;
-  color: var(--black);
-  letter-spacing: 0.04em;
-}
-
-
