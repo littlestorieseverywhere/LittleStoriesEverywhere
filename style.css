@@ -411,10 +411,10 @@ a { color: inherit; text-decoration: none; }
   .hamburger { display: flex; }
 
   /* Stacked name below topbar */
-  .header-wordmark { padding: 20px 20px 0; text-align: center; }
+  .header-wordmark { padding: 36px 20px 0; text-align: center; }
   .header-wordmark a { display: flex; flex-direction: column; align-items: center; gap: 0; }
   .wordmark-top { font-size: 24px; font-weight: 700; letter-spacing: 0.1em; line-height: 1.15; display: block; }
-  .wordmark-bottom { font-size: 24px; font-weight: 700; letter-spacing: 0.1em; line-height: 1.15; display: block; margin-bottom: 5px; }
+  .wordmark-bottom { font-size: 24px; font-weight: 700; letter-spacing: 0.1em; line-height: 1.15; display: block; margin-bottom: 28px; }
   .wordmark-sub { display: block; font-size: 9px; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); }
 
   /* Mobile nav border */
