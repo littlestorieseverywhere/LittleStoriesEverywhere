@@ -43,10 +43,10 @@ a { color: inherit; text-decoration: none; }
 .mobile-topbar { display: none; }
 
 .header-wordmark a {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--black);
   display: block;
@@ -414,7 +414,7 @@ a { color: inherit; text-decoration: none; }
   /* Stacked name below topbar */
   .header-wordmark { padding: 36px 20px 0; text-align: center; }
   .header-wordmark a { display: flex; flex-direction: column; align-items: center; gap: 0; }
-  .wordmark-line { font-size: 24px; font-weight: 700; letter-spacing: 0.1em; line-height: 1.2; display: block; }
+  .wordmark-line { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; letter-spacing: 0.18em; line-height: 1.25; display: block; text-transform: uppercase; }
   .wordmark-line:last-child { margin-bottom: 28px; }
   .wordmark-sub { display: none; }
 
