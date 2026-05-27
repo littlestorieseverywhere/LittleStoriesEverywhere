@@ -14,6 +14,15 @@
 
   <!-- HEADER -->
   <header class="site-header" id="site-header">
+
+    <!-- Mobile top bar: hamburger right -->
+    <div class="mobile-topbar">
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Name block: centered, stacked -->
     <div class="header-wordmark">
       <a href="#" onclick="showPage('home'); return false;">
         <span class="wordmark-top">Little Stories</span>
@@ -21,19 +30,21 @@
         <span class="wordmark-sub">Event Design</span>
       </a>
     </div>
+
+    <!-- Desktop nav -->
     <nav class="main-nav">
       <a class="nav-link active" onclick="showPage('home')">Home</a>
       <a class="nav-link" onclick="showPage('story')">Our Story</a>
       <a class="nav-link" onclick="showPage('contact')">Contact Us</a>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+
+    <!-- Mobile dropdown -->
     <div class="mobile-menu" id="mobile-menu">
       <a class="mobile-link" onclick="showPage('home'); closeMobileMenu();">Home</a>
       <a class="mobile-link" onclick="showPage('story'); closeMobileMenu();">Our Story</a>
       <a class="mobile-link" onclick="showPage('contact'); closeMobileMenu();">Contact Us</a>
     </div>
+
   </header>
 
   <!-- ===================== HOME ===================== -->
