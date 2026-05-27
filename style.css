@@ -56,6 +56,7 @@ a { color: inherit; text-decoration: none; }
 /* Desktop: show name as one line, hide stacked spans */
 .wordmark-top,
 .wordmark-bottom,
+.wordmark-line,
 .wordmark-sub { display: none; }
 
 .main-nav {
@@ -413,9 +414,9 @@ a { color: inherit; text-decoration: none; }
   /* Stacked name below topbar */
   .header-wordmark { padding: 36px 20px 0; text-align: center; }
   .header-wordmark a { display: flex; flex-direction: column; align-items: center; gap: 0; }
-  .wordmark-top { font-size: 24px; font-weight: 700; letter-spacing: 0.1em; line-height: 1.15; display: block; }
-  .wordmark-bottom { font-size: 24px; font-weight: 700; letter-spacing: 0.1em; line-height: 1.15; display: block; margin-bottom: 28px; }
-  .wordmark-sub { display: block; font-size: 9px; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); }
+  .wordmark-line { font-size: 24px; font-weight: 700; letter-spacing: 0.1em; line-height: 1.2; display: block; }
+  .wordmark-line:last-child { margin-bottom: 28px; }
+  .wordmark-sub { display: none; }
 
   /* Mobile nav border */
   .site-header .main-nav { display: none; }
