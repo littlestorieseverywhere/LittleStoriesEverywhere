@@ -459,22 +459,23 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 768px) {
 
-  /* Header */
+  /* Header — wider, bigger name */
   .main-nav { display: none; }
   .hamburger { display: flex; }
-  .site-header { padding: 18px 24px 0; text-align: center; position: relative; }
-  .header-wordmark a { font-size: 15px; margin-bottom: 12px; }
+  .site-header { padding: 22px 16px 0; text-align: center; position: relative; }
+  .header-wordmark a { font-size: 20px; margin-bottom: 14px; letter-spacing: 0.1em; }
 
   /* Hero */
   .hero-full { height: 100vw; }
 
-  /* Bio */
-  .home-bio { padding: 48px 24px; }
-  .home-bio-inner p { font-size: 14px; }
+  /* Bio — bolder, cleaner text */
+  .home-bio { padding: 40px 24px; }
+  .home-bio-inner { gap: 20px; }
+  .home-bio-inner p { font-size: 14px; font-weight: 400; color: var(--dark); line-height: 1.8; }
 
-  /* Grid — stacked single column */
-  .home-grid { padding: 4px 0 0; }
-  .home-grid-inner { grid-template-columns: 1fr; gap: 4px; }
+  /* Grid — padded, not full width */
+  .home-grid { padding: 24px 20px 40px; }
+  .home-grid-inner { grid-template-columns: 1fr; gap: 10px; }
   .home-grid-item { aspect-ratio: 4/3; }
 
   /* Our Story */
