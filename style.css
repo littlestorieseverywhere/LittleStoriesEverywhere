@@ -50,6 +50,15 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 16px;
 }
 
+.wordmark-top,
+.wordmark-bottom {
+  display: inline;
+}
+
+.wordmark-sub {
+  display: none;
+}
+
 .main-nav {
   display: flex;
   justify-content: center;
@@ -459,37 +468,13 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 768px) {
 
-  /* Header — wider, bigger name */
+  /* Header — stacked name */
   .main-nav { display: none; }
   .hamburger { display: flex; }
-  .site-header { padding: 36px 16px 0; text-align: center; position: relative; }
-  .header-wordmark a { font-size: 12px !important; margin-bottom: 22px; }
+  .site-header { padding: 28px 24px 0; text-align: center; position: relative; }
+  .header-wordmark a { margin-bottom: 16px; display: flex; flex-direction: column; align-items: center; }
+  .wordmark-top { font-size: 28px; font-weight: 700; letter-spacing: 0.12em; line-height: 1.15; display: block; }
+  .wordmark-bottom { font-size: 28px; font-weight: 700; letter-spacing: 0.12em; line-height: 1.15; display: block; margin-bottom: 6px; }
+  .wordmark-sub { display: block; font-size: 9px; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; color: var(--mid); }
 
-  /* Hero */
-  .hero-full { height: 100vw; }
-
-  /* Bio — bolder, cleaner text */
-  .home-bio { padding: 40px 24px; }
-  .home-bio-inner { gap: 20px; }
-  .home-bio-inner p { font-size: 14px; font-weight: 400; color: var(--dark); line-height: 1.8; }
-
-  /* Grid — padded, not full width */
-  .home-grid { padding: 24px 20px 40px; }
-  .home-grid-inner { grid-template-columns: 1fr; gap: 10px; }
-  .home-grid-item { aspect-ratio: 4/3; }
-
-  /* Our Story */
-  .story-section { padding: 48px 24px; }
-  .story-inner { grid-template-columns: 1fr; gap: 32px; }
-  .story-image-col img { aspect-ratio: 4/3; }
-
-  /* Contact */
-  .contact-section { padding: 48px 24px; }
-  .contact-simple { max-width: 100%; }
-
-  /* Footer */
-  .site-footer { padding: 24px; }
-  .footer-inner { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
-  .footer-nav { gap: 20px; }
-  .footer-right { align-items: center; }
-}
+  
